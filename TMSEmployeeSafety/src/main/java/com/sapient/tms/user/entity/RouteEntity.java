@@ -1,30 +1,27 @@
-package com.tmsEmployeeSafety.user.entity;
+package com.sapient.tms.user.entity;
 
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-import java.util.List;
-
-import javax.persistence.*;
 @Entity
 @Table(name = "route_entity")
 public class RouteEntity {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	private int routeNumber;
 
 	private String vehicleNumber;
-	
+
 	private boolean isStarted;
-	
+
 	private boolean isCompleted;
- 
+
 	/* private ShiftEntity shift; */
 
 	/*
@@ -33,7 +30,7 @@ public class RouteEntity {
 	 * public void setListOfEmployees(List<UserEntity> listOfEmployees) {
 	 * this.listOfEmployees = listOfEmployees; }
 	 */
-	
+
 	public int getRouteNumber() {
 		return routeNumber;
 	}
@@ -74,7 +71,5 @@ public class RouteEntity {
 	 * 
 	 * public void setShift(ShiftEntity shift) { this.shift = shift; }
 	 */
-	
-	
 
 }

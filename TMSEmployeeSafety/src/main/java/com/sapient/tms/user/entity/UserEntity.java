@@ -1,23 +1,25 @@
-package com.tmsEmployeeSafety.user.entity;
+package com.sapient.tms.user.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import javax.persistence.*;
 @Entity
 @Table(name = "user_entity")
 public class UserEntity {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
-	
+
 	private String userName;
-	
+
 	private String roleId;
-	
+
 	private String encryptedPassword;
-	
+
 	public String getEncryptedPassword() {
 		return encryptedPassword;
 	}
@@ -65,7 +67,6 @@ public class UserEntity {
 	}
 
 	private String name;
-	
 
 	public String getId() {
 		return id;
@@ -82,6 +83,5 @@ public class UserEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 }

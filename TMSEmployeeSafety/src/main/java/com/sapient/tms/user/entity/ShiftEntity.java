@@ -1,3 +1,4 @@
+package com.sapient.tms.user.entity;
 /*
  * package com.tmsEmployeeSafety.user.entity;
  * 

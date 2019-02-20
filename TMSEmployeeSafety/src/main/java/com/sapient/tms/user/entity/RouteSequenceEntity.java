@@ -1,31 +1,25 @@
-package com.tmsEmployeeSafety.user.entity;
+package com.sapient.tms.user.entity;
 
 import javax.persistence.Entity;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-import java.util.List;
-
-import javax.persistence.*;
 @Entity
 @Table(name = "route_sequence_entity")
 public class RouteSequenceEntity {
 
-	
 	private int sequenceNumber;
 
 	private String dropLocation;
-	
+
 	private boolean boarded;
-	
+
 	private boolean deboarded;
-    @Id
+	@Id
 	private String userName;
-	
+
 	private String oracleId;
-	
+
 	private int routeId;
 
 	public String getUserName() {
@@ -83,7 +77,5 @@ public class RouteSequenceEntity {
 	public void setOracleId(String oracleId) {
 		this.oracleId = oracleId;
 	}
- 
-	
 
 }
