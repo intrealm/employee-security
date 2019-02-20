@@ -22,6 +22,8 @@ public class RouteSequenceEntity {
 
 	private int routeId;
 
+	private int routeNumber;
+
 	public String getUserName() {
 		return userName;
 	}
@@ -78,4 +80,11 @@ public class RouteSequenceEntity {
 		this.oracleId = oracleId;
 	}
 
+	public int getRouteNumber() {
+		return routeNumber;
+	}
+
+	public void setRouteNumber(int routeNumber) {
+		this.routeNumber = routeNumber;
+	}
 }

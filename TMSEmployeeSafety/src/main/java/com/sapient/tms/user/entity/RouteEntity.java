@@ -1,11 +1,16 @@
 package com.sapient.tms.user.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sapient.tms.enums.ShiftEnum;
+
+import javax.persistence.Enumerated;
+import javax.persistence.Column;
 @Entity
 @Table(name = "route_entity")
 public class RouteEntity {
@@ -22,15 +27,9 @@ public class RouteEntity {
 
 	private boolean isCompleted;
 
-	/* private ShiftEntity shift; */
-
-	/*
-	 * public List<UserEntity> getListOfEmployees() { return listOfEmployees; }
-	 * 
-	 * public void setListOfEmployees(List<UserEntity> listOfEmployees) {
-	 * this.listOfEmployees = listOfEmployees; }
-	 */
-
+	@Enumerated(EnumType.STRING)
+	private ShiftEnum shift;
+	 
 	public int getRouteNumber() {
 		return routeNumber;
 	}
@@ -66,10 +65,4 @@ public class RouteEntity {
 	public void setCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
 	}
-	/*
-	 * public ShiftEntity getShift() { return shift; }
-	 * 
-	 * public void setShift(ShiftEntity shift) { this.shift = shift; }
-	 */
-
 }

@@ -11,7 +11,7 @@ public interface CachingService {
 	String ROLE = "role";
 	String SEPERATOR = ",";
 
-	String setupSession(String str, String obj) throws JSONException;
+	String setupSession(String str, String role) throws JSONException;
 
 	String addToCache(String str, String key, JSONObject obj) throws JSONException, CachedDataNotFound;
 

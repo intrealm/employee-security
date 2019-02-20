@@ -20,31 +20,45 @@ public class UserEntity {
 
 	private String encryptedPassword;
 
+	private Long phoneNumber;
+	
+	private String address;
+	
+	private String dropLocation;
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getDropLocation() {
+		return dropLocation;
+	}
+
+
+	public void setDropLocation(String dropLocation) {
+		this.dropLocation = dropLocation;
+	}
+
+
+	public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
 	public String getEncryptedPassword() {
 		return encryptedPassword;
 	}
-	/*
-	 * @ElementCollection(targetClass=RouteEntity.class)
-	 * 
-	 * @ManyToMany(targetEntity=UserEntity.class, mappedBy="id",
-	 * fetch=FetchType.EAGER) private List<RouteEntity> routes; public String
-	 * getRoleId() { return roleId; }
-	 */
-	/*
-	 * @ManyToMany
-	 * 
-	 * @JoinTable( name = "route_user", joinColumns = {@JoinColumn(name =
-	 * "username")}, inverseJoinColumns = {@JoinColumn(name = "id")} ) private
-	 * List<RouteEntity> routes = new ArrayList<>();
-	 * 
-	 * public UserEntity(String name, List<RouteEntity> routes) { this.name = name;
-	 * this.routes = routes; }
-	 */
-	/*
-	 * public List<RouteEntity> getRoutes() { return routes; }
-	 * 
-	 * public void setRoutes(List<RouteEntity> routes) { this.routes = routes; }
-	 */
+	
 
 	public void setEncryptedPassword(String encryptedPassword) {
 		this.encryptedPassword = encryptedPassword;
