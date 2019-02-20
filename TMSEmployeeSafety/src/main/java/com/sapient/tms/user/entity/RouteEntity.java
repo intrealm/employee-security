@@ -26,6 +26,8 @@ public class RouteEntity {
 	private boolean isStarted;
 
 	private boolean isCompleted;
+	
+	private long delayedBy;
 
 	@Enumerated(EnumType.STRING)
 	private ShiftEnum shift;
@@ -65,4 +67,19 @@ public class RouteEntity {
 	public void setCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
 	}
+
+	/*
+	 * public ShiftEntity getShift() { return shift; }
+	 * 
+	 * public void setShift(ShiftEntity shift) { this.shift = shift; }
+	 */
+
+	public long getDelayedBy() {
+		return delayedBy;
+	}
+
+	public void setDelayedBy(long delayedBy) {
+		this.delayedBy = delayedBy;
+	}
+	
 }

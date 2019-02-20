@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sapient.tms.repository.RouteRepository;
+import com.sapient.tms.repository.RouteSequenceRepository;
 import com.sapient.tms.user.entity.RouteSequenceEntity;
 
 @CrossOrigin
 @RestController
 public class CabBoardingController {
 	@Autowired
-	private RouteRepository routeRepository;
+	private RouteSequenceRepository routeRepository;
 
 	@RequestMapping(value = "/board/{userName}/{routeId}", method = RequestMethod.GET)
 	public boolean boardCab(@PathVariable(name = "userName") String userName,
