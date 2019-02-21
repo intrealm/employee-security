@@ -1,6 +1,7 @@
 package com.sapient.tms.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sapient.tms.repository.RouteSequenceRepository;
 import com.sapient.tms.user.entity.RouteSequenceEntity;
-
+@EnableScheduling
 @CrossOrigin
 @RestController
 public class CabBoardingController {

@@ -1,4 +1,4 @@
-package com.sapient.tms;
+package com.sapient.tms.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
