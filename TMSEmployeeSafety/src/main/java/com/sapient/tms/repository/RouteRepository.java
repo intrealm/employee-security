@@ -14,7 +14,7 @@ public interface RouteRepository extends JpaRepository<RouteEntity, Integer>
 	@Query(value = "FROM RouteEntity where isStarted = true and isCompleted = false")
 	List<RouteEntity> findAllActiveRoutes();
     
-	Optional<RouteEntity> findById(Integer id);
+	Optional<RouteEntity> findById(int id);
 	
 	@Query(value = "FROM RouteEntity where isStarted = true and isCompleted = false and startTime is not null")
 	List<RouteEntity> getRouteListingWithTimeStamp();

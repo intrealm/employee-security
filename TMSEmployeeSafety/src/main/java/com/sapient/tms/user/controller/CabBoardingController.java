@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sapient.tms.repository.RouteSequenceRepository;
 import com.sapient.tms.user.entity.RouteSequenceEntity;
-@EnableScheduling
 @CrossOrigin
 @RestController
 public class CabBoardingController {
