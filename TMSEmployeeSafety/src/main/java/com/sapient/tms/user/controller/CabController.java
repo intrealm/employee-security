@@ -26,7 +26,6 @@ public class CabController {
 	
 	@RequestMapping(value = "/startTrip/{routeId}", method = RequestMethod.GET)
 	public boolean startTrip(@PathVariable(name = "routeId") int routeId) {
-		System.out.println("heeeerrrree");
 		if(!CollectionUtils.isEmpty(routeSequenceRepository.getBoardedEmployees(routeId)))
 		{
 			RouteEntity route=null;
@@ -39,7 +38,7 @@ public class CabController {
 			route.setStarted(true);
 			route.setStartTime(timestamp);
 			routeRepository.save(route);
-			//schedule google maps job from here to run every minute and save coordinates at the server
+			//schedule google maps job to run every minute and save coordinates at the server
 			return true;
 			//also schedule job to create cab is late by (every 2 mins).
 			
@@ -48,4 +47,19 @@ public class CabController {
 		}
 		return false;
 	}
+	
+	@RequestMapping(value = "/completeTrip/{routeId}", method = RequestMethod.GET)
+	public boolean completeTrip(@PathVariable(name = "routeId") int routeId) {
+		RouteEntity route=null;
+		Optional<RouteEntity> routeEntity=routeRepository.findById(routeId);
+		if(routeEntity.isPresent())
+		{
+			route=routeEntity.get();
+			route.setCompleted(true);
+			routeRepository.save(route);
+			return true;
+		}
+		return false;
+}
+	
 }

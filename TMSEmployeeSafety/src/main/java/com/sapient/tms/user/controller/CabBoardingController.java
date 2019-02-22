@@ -28,4 +28,17 @@ public class CabBoardingController {
 		}
 		return false;
 	}
+	
+	@RequestMapping(value = "/deboard/{userName}/{routeId}", method = RequestMethod.GET)
+	public boolean deboardCab(@PathVariable(name = "userName") String userName,
+			@PathVariable(name = "routeId") int routeId) {
+		final RouteSequenceEntity employeeRouteSequence = this.routeRepository.findByUserNameAndRouteIdIn(userName,
+				routeId);
+		if (null != employeeRouteSequence) {
+			employeeRouteSequence.setDeboarded(true);
+			routeRepository.save(employeeRouteSequence);
+			return true;
+		}
+		return false;
+	}
 }

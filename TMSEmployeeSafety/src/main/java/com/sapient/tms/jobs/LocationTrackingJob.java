@@ -11,7 +11,6 @@ public class LocationTrackingJob {
 	@Bean(name = "ETA")
 	@Scheduled(fixedDelay = 10000)
 	public void scheduleTaskWithFixedDelay() {
-		System.out.println("I am in thread scheduler");
 		try {
 			TimeUnit.SECONDS.sleep(5);
 		} catch (InterruptedException ex) {
