@@ -13,8 +13,6 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "call_entity")
 public class CallEntity {
 	@Id
-	@GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	private String sid;
 	private String userName;
 	private int routeId;
