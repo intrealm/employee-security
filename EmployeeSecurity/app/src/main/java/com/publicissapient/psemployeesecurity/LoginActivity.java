@@ -314,6 +314,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         int IS_PRIMARY = 1;
     }
 
+    private Map<String,String > jsonToMap(String t) throws JSONException {
+
+        HashMap<String, String> map = new HashMap();
+        JSONObject jObject = new JSONObject(t);
+        Iterator<String> keys = jObject.keys();
+
+        while( keys.hasNext() ){
+            String key = keys.next();
+            String value = jObject.getString(key);
+            map.put(key, value);
+
+        }
+        return map;
+    }
+
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -335,7 +350,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(
-                    "http://10.203.47.27:9091/login");// replace with your url
+                    "http://192.168.1.8:9091/login");// replace with your url
             httpPost.addHeader("Content-type",
                     "application/x-www-form-urlencoded");
 
@@ -428,7 +443,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
 
-                Intent intent = new Intent(LoginActivity.this, AllActiveRouteActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RouteList.class);
                 startActivity(intent);
 
                 //finish();
@@ -443,21 +458,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
-    }
-
-    private Map<String,String > jsonToMap(String t) throws JSONException {
-
-        HashMap<String, String> map = new HashMap();
-        JSONObject jObject = new JSONObject(t);
-        Iterator<String> keys = jObject.keys();
-
-        while( keys.hasNext() ){
-            String key = keys.next();
-            String value = jObject.getString(key);
-            map.put(key, value);
-
-        }
-        return map;
     }
 
     private void storeToSharedStorage(String sessionId,String role)

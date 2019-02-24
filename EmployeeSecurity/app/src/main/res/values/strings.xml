@@ -107,4 +107,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_route_list">RouteListActivity</string>
+    <string name="title_activity_track_route">Map</string>
 </resources>
