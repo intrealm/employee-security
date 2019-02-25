@@ -4,6 +4,8 @@ insert into user_entity values('10001','noida sector 119','noida sector 119', '1
 
 insert into user_entity values('10002','noida sector 119','noida sector 1190', 'password', 'sourva pathak',8585912788, 'user','souravp@test.com');
 
+insert into user_entity values('10003','noida sector 119','noida sector 119', 'password', 'shivani puri',8860095906, 'admin','admin@test.com');
+
 insert into route_entity(id,is_started,is_completed,route_number,shift,delayed_by,vehicle_number,eta_in_minutes) values(1,false,false,15,'DROP',0,'UP-14-1234',2);
 insert into route_entity(id,is_started,is_completed,route_number,shift,delayed_by,vehicle_number,eta_in_minutes) values(2,true,false,15,'DROP',0,'UP-14-1234',2);
 
