@@ -49,10 +49,6 @@
 			<artifactId>json</artifactId>
 			<version>20080701</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.twilio.sdk/twilio-java-sdk -->
-<!-- https://mvnrepository.com/artifact/com.twilio.sdk/twilio -->
-<!-- https://mvnrepository.com/artifact/com.twilio.sdk/twilio -->
-<!-- https://mvnrepository.com/artifact/com.twilio.sdk/twilio-java-sdk -->
 <dependency>
   <groupId>com.twilio.sdk</groupId>
   <artifactId>twilio</artifactId>

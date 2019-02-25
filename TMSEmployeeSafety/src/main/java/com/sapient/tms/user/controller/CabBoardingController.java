@@ -1,6 +1,7 @@
 package com.sapient.tms.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sapient.tms.repository.RouteSequenceRepository;
 import com.sapient.tms.user.entity.RouteSequenceEntity;
-
 @CrossOrigin
 @RestController
 public class CabBoardingController {
@@ -23,6 +23,19 @@ public class CabBoardingController {
 				routeId);
 		if (null != employeeRouteSequence) {
 			employeeRouteSequence.setBoarded(true);
+			routeRepository.save(employeeRouteSequence);
+			return true;
+		}
+		return false;
+	}
+	
+	@RequestMapping(value = "/deboard/{userName}/{routeId}", method = RequestMethod.GET)
+	public boolean deboardCab(@PathVariable(name = "userName") String userName,
+			@PathVariable(name = "routeId") int routeId) {
+		final RouteSequenceEntity employeeRouteSequence = this.routeRepository.findByUserNameAndRouteIdIn(userName,
+				routeId);
+		if (null != employeeRouteSequence) {
+			employeeRouteSequence.setDeboarded(true);
 			routeRepository.save(employeeRouteSequence);
 			return true;
 		}

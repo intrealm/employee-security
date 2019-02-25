@@ -6,4 +6,6 @@ import com.sapient.tms.user.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, String> {
 	UserEntity findByUserNameAndEncryptedPasswordIn(String id, String password);
+
+	UserEntity findByUserName(String userName);
 }

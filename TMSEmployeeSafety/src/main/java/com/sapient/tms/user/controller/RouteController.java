@@ -24,8 +24,6 @@ public class RouteController {
 	
 	@Autowired
 	private RouteRepository routeRepository;
-	
-	
 
 	@RequestMapping(value = "/displayRoute/{userName}", method = RequestMethod.GET)
 	public RouteSequenceEntity displayRoute(@PathVariable(name = "userName") String userName) {

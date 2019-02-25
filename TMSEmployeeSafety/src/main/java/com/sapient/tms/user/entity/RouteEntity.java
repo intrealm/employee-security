@@ -10,6 +10,9 @@ import javax.persistence.Table;
 import com.sapient.tms.enums.ShiftEnum;
 
 import javax.persistence.Enumerated;
+
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 @Entity
 @Table(name = "route_entity")
@@ -28,6 +31,26 @@ public class RouteEntity {
 	private boolean isCompleted;
 	
 	private long delayedBy;
+	
+	public Long getEtaInMinutes() {
+		return etaInMinutes;
+	}
+
+	public void setEtaInMinutes(Long etaInMinutes) {
+		this.etaInMinutes = etaInMinutes;
+	}
+
+	private Timestamp startTime;
+	
+	private Long etaInMinutes;
+
+	public Timestamp getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Timestamp startTime) {
+		this.startTime = startTime;
+	}
 
 	@Enumerated(EnumType.STRING)
 	private ShiftEnum shift;
@@ -67,12 +90,6 @@ public class RouteEntity {
 	public void setCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
 	}
-
-	/*
-	 * public ShiftEntity getShift() { return shift; }
-	 * 
-	 * public void setShift(ShiftEntity shift) { this.shift = shift; }
-	 */
 
 	public long getDelayedBy() {
 		return delayedBy;
