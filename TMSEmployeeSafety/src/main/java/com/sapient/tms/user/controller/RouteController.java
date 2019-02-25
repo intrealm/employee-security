@@ -37,11 +37,9 @@ public class RouteController {
 		return null;
 	}
 	
-	@RequestMapping(value = "/allActiveRoutes/{guid}", method = RequestMethod.GET)
-	public List<RouteEntity> getAllRoute(@PathVariable(name = "guid") String guid) {
-		//validate guid as session id from cache
-		return routeRepository.findAllRoutes(true,false);
-		
+	@RequestMapping(value = "/allActiveRoutes", method = RequestMethod.GET)
+	public List<RouteEntity> getAllRoute() {
+		return routeRepository.findAllRoutes(true,false);	
 	}
 	
 	@RequestMapping(value = "/displayRouteForAdmin/{routeId}", method = RequestMethod.GET)
