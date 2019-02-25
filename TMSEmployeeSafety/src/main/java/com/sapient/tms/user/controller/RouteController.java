@@ -27,7 +27,7 @@ public class RouteController {
 
 	@RequestMapping(value = "/displayRoute/{userName}", method = RequestMethod.GET)
 	public RouteSequenceEntity displayRoute(@PathVariable(name = "userName") String userName) {
-		final List<RouteSequenceEntity> activeRoutes = this.routeSequenceRepository.findByIdAndIsStartedIn(userName, false);
+		final List<RouteSequenceEntity> activeRoutes = this.routeSequenceRepository.findByIdAndIsStartedIn(userName,false);
 		if (!CollectionUtils.isEmpty(activeRoutes)) {
 			return activeRoutes.iterator().next();
 		}

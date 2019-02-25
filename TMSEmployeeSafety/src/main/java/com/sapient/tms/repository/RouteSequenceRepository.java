@@ -21,4 +21,6 @@ public interface RouteSequenceRepository extends JpaRepository<RouteSequenceEnti
 	
 	@Query(value = "SELECT rs FROM RouteSequenceEntity rs join RouteEntity re ON rs.routeId=re.id where rs.boarded = true and rs.deboarded = false and re.startTime is not null")
 	List<RouteSequenceEntity> getRouteSequenceListingWithTimeStamp();
+
+	List<RouteSequenceEntity> findByRouteId(int routeId);
 }
