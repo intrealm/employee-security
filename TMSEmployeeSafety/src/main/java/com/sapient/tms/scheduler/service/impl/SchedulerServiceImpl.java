@@ -13,7 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.sapient.tms.calling.service.MakeCallService;
+import com.sapient.tms.calling.service.impl.MakeCallServiceImpl;
 import com.sapient.tms.repository.RouteRepository;
 import com.sapient.tms.repository.RouteSequenceRepository;
 import com.sapient.tms.repository.UserRepository;
@@ -33,7 +33,7 @@ public class SchedulerServiceImpl implements SchedulerService {
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
-	MakeCallService makeCallService;
+	MakeCallServiceImpl makeCallService;
 	
 	@Value("${allowedDelayInMinutes}")
 	long allowedDelayInMinutes;
