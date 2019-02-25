@@ -11,12 +11,15 @@ import com.sapient.tms.user.entity.RouteEntity;
 public interface RouteRepository extends JpaRepository<RouteEntity, Integer>
 
 {
-	@Query(value = "FROM RouteEntity where isStarted = true and isCompleted = false")
-	List<RouteEntity> findAllActiveRoutes();
+	@Query(value = "select re FROM RouteEntity re JOIN RouteSequenceEntity rs ON re.id=rs.routeId where re.isStarted = :isStarted and re.isCompleted = :isCompleted and rs.userName=:userName")
+	List<RouteEntity> findAllRoutes(String userName, boolean isStarted,boolean isCompleted);
     
 	Optional<RouteEntity> findById(int id);
 	
 	@Query(value = "FROM RouteEntity where isStarted = true and isCompleted = false and startTime is not null")
 	List<RouteEntity> getRouteListingWithTimeStamp();
+
+	@Query(value = "FROM RouteEntity where isStarted = :isStarted and isCompleted = :isCompleted")
+	List<RouteEntity> findAllRoutes(boolean isStarted, boolean isCompleted);
 
 }

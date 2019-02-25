@@ -52,6 +52,18 @@ public class RouteEntity {
 		this.startTime = startTime;
 	}
 
+	public ShiftEnum getShift() {
+		return shift;
+	}
+
+	public void setShift(ShiftEnum shift) {
+		this.shift = shift;
+	}
+
+	public int getId() {
+		return id;
+	}
+
 	@Enumerated(EnumType.STRING)
 	private ShiftEnum shift;
 	 
