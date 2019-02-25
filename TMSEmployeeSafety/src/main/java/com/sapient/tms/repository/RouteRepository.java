@@ -12,7 +12,7 @@ public interface RouteRepository extends JpaRepository<RouteEntity, Integer>
 
 {
 	@Query(value = "select re FROM RouteEntity re JOIN RouteSequenceEntity rs ON re.id=rs.routeId where re.isStarted = :isStarted and re.isCompleted = :isCompleted and rs.userName=:userName")
-	List<RouteEntity> findAllRoutes(String userName, boolean isStarted,boolean isCompleted);
+	List<RouteEntity> findAllInactiveRoutesForUser(String userName, boolean isStarted,boolean isCompleted);
     
 	Optional<RouteEntity> findById(int id);
 	
@@ -20,6 +20,6 @@ public interface RouteRepository extends JpaRepository<RouteEntity, Integer>
 	List<RouteEntity> getRouteListingWithTimeStamp();
 
 	@Query(value = "FROM RouteEntity where isStarted = :isStarted and isCompleted = :isCompleted")
-	List<RouteEntity> findAllRoutes(boolean isStarted, boolean isCompleted);
+	List<RouteEntity> findAllRoutesBasedOnStartedAndCompletedFlag(boolean isStarted, boolean isCompleted);
 
 }

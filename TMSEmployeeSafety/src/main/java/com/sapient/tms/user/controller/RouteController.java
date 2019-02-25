@@ -27,7 +27,7 @@ public class RouteController {
 
 	@RequestMapping(value = "/displayRoute/{userName}", method = RequestMethod.GET)
 	public List<RouteSequenceEntity> displayRoute(@PathVariable(name = "userName") String userName) {
-		final List<RouteEntity> routes=routeRepository.findAllRoutes(userName,false,false);
+		final List<RouteEntity> routes=routeRepository.findAllInactiveRoutesForUser(userName,false,false);
 		if(!CollectionUtils.isEmpty(routes))
 		{
 		int firstRouteId=routes.iterator().next().getId();
@@ -39,7 +39,7 @@ public class RouteController {
 	
 	@RequestMapping(value = "/allActiveRoutes", method = RequestMethod.GET)
 	public List<RouteEntity> getAllRoute() {
-		return routeRepository.findAllRoutes(true,false);	
+		return routeRepository.findAllRoutesBasedOnStartedAndCompletedFlag(true,false);	
 	}
 	
 	@RequestMapping(value = "/displayRouteForAdmin/{routeId}", method = RequestMethod.GET)
