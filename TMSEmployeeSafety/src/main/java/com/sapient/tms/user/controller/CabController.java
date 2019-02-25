@@ -38,12 +38,7 @@ public class CabController {
 			route.setStarted(true);
 			route.setStartTime(timestamp);
 			routeRepository.save(route);
-			//schedule google maps job to run every minute and save coordinates at the server
 			return true;
-			//also schedule job to create cab is late by (every 2 mins).
-			
-
-			// the scheduler runs the calling service if ETA is extended by 10 minutes.	
 		}
 		return false;
 	}

@@ -25,20 +25,27 @@ public class RouteController {
 	@Autowired
 	private RouteRepository routeRepository;
 
-	@RequestMapping(value = "/displayRoute/{userName}", method = RequestMethod.GET)
-	public RouteSequenceEntity displayRoute(@PathVariable(name = "userName") String userName) {
-		final List<RouteSequenceEntity> activeRoutes = this.routeSequenceRepository.findByIdAndIsStartedIn(userName,false);
-		if (!CollectionUtils.isEmpty(activeRoutes)) {
-			return activeRoutes.iterator().next();
-		}
-		return null;
+	@RequestMapping(value = "/displayRoute", method = RequestMethod.GET)
+	public List<RouteSequenceEntity> displayRoute() {
+		final List<RouteSequenceEntity> activeRoutes = this.routeSequenceRepository.findAll();
+	
+			return activeRoutes;
+
 	}
 	
 	@RequestMapping(value = "/allActiveRoutes/{guid}", method = RequestMethod.GET)
 	public List<RouteEntity> getAllRoute(@PathVariable(name = "guid") String guid) {
-		
 		//validate guid as session id from cache
 		return routeRepository.findAllActiveRoutes();
 		
+	}
+	
+	@RequestMapping(value = "/displayRouteForAdmin/{routeId}", method = RequestMethod.GET)
+	public RouteSequenceEntity displayRoute(@PathVariable(name = "routeId") int routeId) {
+		final List<RouteSequenceEntity> activeRoutes = this.routeSequenceRepository.findByRouteId(routeId);
+		if (!CollectionUtils.isEmpty(activeRoutes)) {
+			return activeRoutes.iterator().next();
+		}
+		return null;
 	}
 }
