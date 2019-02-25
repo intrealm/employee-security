@@ -14,9 +14,11 @@ $( document ).ready(function() {
                     contentType: false,
                     type: 'POST',
                     success: function (dataofconfirm) {
-                       debugger;
-                        if(typeof dataofconfirm.roleId !== undefined && typeof dataofconfirm.roleId !== null){
-                             openPage('templates/route.html', dataofconfirm)
+                    
+                        if(dataofconfirm.roleId == "user"){
+                            openPage('templates/route.html', dataofconfirm);
+                        }else if(dataofconfirm.roleId == "admin"){
+                            openPage('templates/routelist.html', dataofconfirm);
                         }else{
                             alert("Unable to login")
                         }
@@ -31,7 +33,9 @@ $( document ).ready(function() {
                 type: 'GET',
                 success: function (data) {
                     $("#pageview").html(data);
-                    console.log(loginData);
+                    $("#pageview").html(data);
+                    
+                  
                 }
             });
 
