@@ -4,13 +4,17 @@ $( document ).ready(function() {
     $.get( "http://localhost:9091/displayRoute/souravp", function(data) {
             renderAdminPage(data);
     });
-    
+     
     function renderAdminPage(data){
         var admindata = data;
         $("#usrname").html(admindata.userName);
         $("#route").html(admindata.routeNumber);
         userData(data);
     }
+    
+    $(document).on('click', '.boarded', userBoarded);
+    $(document).on('click', '.deboarded', userDeBoarded);
+    
     function userData(data){
         var html= '';
             html += "<div class='col-md-12'>";
@@ -31,22 +35,22 @@ $( document ).ready(function() {
             html += '<td>'+value.userName+'</td>';
             html += '<td>'+value.dropLocation+'</td>';
             html += '<td>'+value.delayedBy+'</td>';
-               if(value.boarded == "true"){
+                if(value.boarded == "true"){
                      html += '<td>';
-                     html += '<input type="checkbox" value="" checked>';
+                     html += '<input type="checkbox" value="" checked data-attr='+value.userName+'>';
                      html += '</td>';
                }else{
                      html += '<td>';
-                     html += '<input type="checkbox" value="" >';
+                     html += '<input type="checkbox" value="" class="boarded" data-attr='+value.userName+'>';
                      html += '</td>';
                }
               if(value.deboarded == "true"){
                      html += '<td>';
-                     html += '<input type="checkbox" value="" checked>';
+                     html += '<input type="checkbox" value="" checked class="deboarded" data-attr='+value.userName+'>';
                      html += '</td>';
                }else{
                      html += '<td>';
-                     html += '<input type="checkbox" value="" >';
+                     html += '<input type="checkbox" value="" class="deboarded" data-attr='+value.userName+'>';
                      html += '</td>';
                }
             html += '</tr>';    
@@ -54,5 +58,26 @@ $( document ).ready(function() {
             html += '</table>';
             html += "</div>";
          $("#drawtable").html(html);  
+    }
+    
+    function userBoarded(){
+        //$(".boarded").prop("checked", true);
+        var hetUsername = $(".deboarded").attr("data-attr");
+         $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
+          if(data == true){
+              alert("User have boarded");
+              $(".boarded").prop("checked", true).attr("disabled", true);
+          }
+     });
+    }
+    function userDeBoarded(){
+        //$(".deboarded").prop("checked", true);
+        var hetUsername = $(".deboarded").attr("data-attr");
+        $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
+            if(data == true){
+              alert("User have deboarded");
+                $(".deboarded").prop("checked", true).attr("disabled", true);
+          }
+     });
     }
 });

@@ -11,11 +11,21 @@ $( document ).ready(function() {
     var getRoutedata;
     
     $(document).on('click', '#routelisttable tr', routeNestPages);
-    $(document).on('click', '.start-trip', startTrip);
+    
     $(document).on('click', '.sos-btn', createSos);
     $(document).on('click', '.boarded', userBoarded);
     $(document).on('click', '.deboarded', userDeBoarded);
+    $(document).on('click', '.completetrip', tripComplete);
+    $(document).on('click', '.start-trip', startTrip);
+	$(document).on('click', '#trackrtip', naviagatetoTrack);
     
+	function naviagatetoTrack()
+	{
+      $.get( "templates/track.html", function(data) {
+          $("#pageview").html(data);
+          });
+	}
+	
     function createSos(){ 
     $.get("http://localhost:9091/raiseSOS/prerana/"+getRoutedata[0].routeId, function(data) {
            console.log(data)
@@ -112,20 +122,20 @@ $( document ).ready(function() {
             html += '<td>'+value.delayedBy+'</td>';
                if(value.boarded == "true"){
                      html += '<td>';
-                     html += '<input type="checkbox" value="" checked>';
+                     html += '<input type="checkbox" value="" checked data-attr='+value.userName+'>';
                      html += '</td>';
                }else{
                      html += '<td>';
-                     html += '<input type="checkbox" value="" class="boarded">';
+                     html += '<input type="checkbox" value="" class="boarded" data-attr='+value.userName+'>';
                      html += '</td>';
                }
               if(value.deboarded == "true"){
                      html += '<td>';
-                     html += '<input type="checkbox" value="" checked class="deboarded">';
+                     html += '<input type="checkbox" value="" checked class="deboarded" data-attr='+value.userName+'>';
                      html += '</td>';
                }else{
                      html += '<td>';
-                     html += '<input type="checkbox" value="" class="deboarded">';
+                     html += '<input type="checkbox" value="" class="deboarded" data-attr='+value.userName+'>';
                      html += '</td>';
                }
             html += '</tr>';     
@@ -134,22 +144,37 @@ $( document ).ready(function() {
             html += "</div>";
             html += '<div class="row">';
             html += '<div class="col-md-12 text-center" id="buttonContainer">';
-            html += '<button class="btn btn-default start-trip" type="submit">Start Trip</button>';
-            html += '<button class="btn btn-default track-trip" type="submit" style="display:none; margin-right:50px">Track Trip</button>';
-            html += '<button class="btn btn-default track-trip" type="submit" style="display:none; margin-left:50px">Complete Trip</button>';
+            html += '<button class="btn btn-default start-trip" type="submit" id="startTrip">Start Trip</button>';
+            html += '<button class="btn btn-default track-trip" id="trackrtip" type="submit" style="display:none; margin-right:50px">Track Trip</button>';
+            html += '<button class="btn btn-default track-trip" type="submit" id="completetrip" style="display:none; margin-left:50px">Complete Trip</button>';
             html += '</div>';
             html += '</div>';
          $("#pageview").html(html); 
     }
     
     function startTrip(){
-        $(".track-trip").show();
-        $(".start-trip").hide();
         
+        $.get("http://localhost:9091/board/startTrip/"+getRoutedata[0].routeId, function(data) {
+            if(data == true){
+                alert("Trip has started");
+                $(".track-trip").show();
+                $(".start-trip").hide();
+            }
+           });     
+    }
+    function tripComplete(){
+        $.get("http://localhost:9091/board/completeTrip/"+getRoutedata[0].routeId, function(data) {
+            if(data == true){
+                alert("Trip has completed");
+                $(".track-trip").show();
+                $(".start-trip").hide();
+            }
+           });     
     }
     function userBoarded(){
         //$(".boarded").prop("checked", true);
-         $.get( "http://localhost:9091/board/prerana/"+getRoutedata[0].routeId, function(data) {
+        var hetUsername = $(".deboarded").attr("data-attr");
+         $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
           if(data == true){
               alert("User have boarded");
               $(".boarded").prop("checked", true).attr("disabled", true);
@@ -158,7 +183,8 @@ $( document ).ready(function() {
     }
     function userDeBoarded(){
         //$(".deboarded").prop("checked", true);
-        $.get( "http://localhost:9091/board/prerana/"+getRoutedata[0].routeId, function(data) {
+        var hetUsername = $(".deboarded").attr("data-attr");
+        $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
             if(data == true){
               alert("User have deboarded");
                 $(".deboarded").prop("checked", true).attr("disabled", true);

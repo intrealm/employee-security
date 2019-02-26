@@ -4,7 +4,6 @@ $( document ).ready(function() {
         $(document).on('click','.btn-block', login);
     
         function login(){
-            debugger;
             var myform = document.getElementById("signin");
                 var fd = new FormData(myform );
                 $.ajax({
