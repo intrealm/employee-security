@@ -1,5 +1,7 @@
+// Normal User
+
 $( document ).ready(function() {
-    $.get( "http://localhost:9091/displayRoute ", function(data) {
+    $.get( "http://localhost:9091/displayRoute/souravp", function(data) {
             renderAdminPage(data);
     });
     
@@ -13,6 +15,7 @@ $( document ).ready(function() {
     }
     
     function userData(data){
+        debugger;
         console.log(data);
         var html= '';
            
@@ -29,32 +32,29 @@ $( document ).ready(function() {
             html += '<td>Boarded</td>';
             html += '<td>Deboarded</td>';
             html += '</tr>';
-           data.forEach(function(value,index){
-               
-            
+            data.forEach(function(value,index){
             html += '<tr>';
             html += '<td>'+value.userName+'</td>';
             html += '<td>'+value.dropLocation+'</td>';
             html += '<td>'+value.delayedBy+'</td>';
                if(value.boarded == "true"){
-                 html += '<td>';
-                 html += '<input type="checkbox" value="" checked>';
-                 html += '</td>';
+                     html += '<td>';
+                     html += '<input type="checkbox" value="" checked>';
+                     html += '</td>';
                }else{
-                  html += '<td>';
-                 html += '<input type="checkbox" value="" >';
-                 html += '</td>';
+                     html += '<td>';
+                     html += '<input type="checkbox" value="" >';
+                     html += '</td>';
                }
-             if(value.deboarded == "true"){
-                 html += '<td>';
-                 html += '<input type="checkbox" value="" checked>';
-                 html += '</td>';
+              if(value.deboarded == "true"){
+                     html += '<td>';
+                     html += '<input type="checkbox" value="" checked>';
+                     html += '</td>';
                }else{
-                  html += '<td>';
-                 html += '<input type="checkbox" value="" >';
-                 html += '</td>';
+                     html += '<td>';
+                     html += '<input type="checkbox" value="" >';
+                     html += '</td>';
                }
-               
             html += '</tr>';   
            
                
