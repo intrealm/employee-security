@@ -9,8 +9,8 @@ insert into user_entity (id,address,drop_location,encrypted_password,name,phone_
 insert into route_entity(id,is_started,is_completed,route_number,shift,delayed_by,vehicle_number,eta_in_minutes) values(1,false,false,15,'DROP',0,'UP-14-1234',2);
 insert into route_entity(id,is_started,is_completed,route_number,shift,delayed_by,vehicle_number,eta_in_minutes) values(2,true,false,15,'DROP',0,'UP-14-1234',2);
 
-insert into route_sequence_entity (user_name,boarded,deboarded,drop_location,oracle_id,route_id,route_number,sequence_number,eta_in_minutes,delayed_by) values ('shipuri',false,false,'Noida','10001',1,15,1,1,0);
-insert into route_sequence_entity (user_name,boarded,deboarded,drop_location,oracle_id,route_id,route_number,sequence_number,eta_in_minutes,delayed_by) values ('mahendra',false,false,'Noida','10003',1,15,1,1,0);
+insert into route_sequence_entity (user_name,boarded,deboarded,drop_location,oracle_id,route_id,route_number,sequence_number,eta_in_minutes,delayed_by,name) values ('shipuri',false,false,'Noida','10001',1,15,1,1,0,'Shivani Puri');
+insert into route_sequence_entity (user_name,boarded,deboarded,drop_location,oracle_id,route_id,route_number,sequence_number,eta_in_minutes,delayed_by,name) values ('mahendra',false,false,'Noida','10003',1,15,1,1,0,'Mahendra Pal');
 
 
 insert into escalation_entity (user_name,phone_number,escalation_phone_numbers) values ('shipuri','8860095906','8860095906');

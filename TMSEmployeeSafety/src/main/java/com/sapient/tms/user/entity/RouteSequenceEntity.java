@@ -27,6 +27,8 @@ public class RouteSequenceEntity {
 	private Long etaInMinutes;
 	
 	private long delayedBy;
+	
+	private String name;
 
 	public String getUserName() {
 		return userName;
@@ -107,5 +109,13 @@ public class RouteSequenceEntity {
 
 	public void setDelayedBy(long delayedBy) {
 		this.delayedBy = delayedBy;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

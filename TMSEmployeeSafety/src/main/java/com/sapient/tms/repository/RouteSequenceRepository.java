@@ -21,4 +21,5 @@ public interface RouteSequenceRepository extends JpaRepository<RouteSequenceEnti
 	List<RouteSequenceEntity> getRouteSequenceListingWithTimeStamp();
 
 	List<RouteSequenceEntity> findByRouteId(int routeId);
+	
 }

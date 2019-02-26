@@ -2,9 +2,18 @@ package com.sapient.tms.calling.service.impl;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
+
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -92,12 +101,7 @@ public class MakeCallServiceImpl implements MakeCallService {
 		try {
 			call = Call.creator(new PhoneNumber("+91" + employeePhoneNumber), new PhoneNumber("+13126472097"),
 					new URI("http://demo.twilio.com/docs/voice.xml")).create();
-			/*
-			 * Message.creator(new PhoneNumber("+whatsapp:+14155238886"), new
-			 * PhoneNumber("+whatsapp:+918860095906"),
-			 * "Please mark yourself as deboarded if you have reached home safely")
-			 * .create();
-			 */
+			
 			logger.info("Call has been triggered to "+employeePhoneNumber+" of employee "+routeSequence.getUserName());
 			addCallToRepository(call, employeePhoneNumber, routeSequence,callType);
 		} catch (URISyntaxException e) {
@@ -117,5 +121,9 @@ public class MakeCallServiceImpl implements MakeCallService {
 		callEntity.setCallType(callType);
 		callRepository.save(callEntity);
 	}
+
+
+
+	
 
 }
