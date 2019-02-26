@@ -43,11 +43,8 @@ public class RouteController {
 	}
 	
 	@RequestMapping(value = "/displayRouteForAdmin/{routeId}", method = RequestMethod.GET)
-	public RouteSequenceEntity displayRoute(@PathVariable(name = "routeId") int routeId) {
-		final List<RouteSequenceEntity> activeRoutes = this.routeSequenceRepository.findByRouteId(routeId);
-		if (!CollectionUtils.isEmpty(activeRoutes)) {
-			return activeRoutes.iterator().next();
-		}
-		return null;
+	public List<RouteSequenceEntity> displayRoute(@PathVariable(name = "routeId") int routeId) {
+		final List<RouteSequenceEntity> activeRoutes = this.routeSequenceRepository.findByRouteId(routeId);	
+		return activeRoutes;
 	}
 }
