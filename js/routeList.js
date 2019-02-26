@@ -8,7 +8,7 @@ $( document ).ready(function() {
     function renderROuteList(data){
         
         userData(data);
-    }
+    } 
     $(document).on('click', '#routelisttable tr', routeNestPages);
     $(document).on('click', '.start-trip', startTrip);
     function userData(data){

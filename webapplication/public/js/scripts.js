@@ -1,9 +1,10 @@
 $( document ).ready(function() {  
         var roleid;
         openPage("../templates/signin.html", '');
-        $(document).on('click','.btn', login);
+        $(document).on('click','.btn-block', login);
     
         function login(){
+            debugger;
             var myform = document.getElementById("signin");
                 var fd = new FormData(myform );
                 $.ajax({
@@ -17,7 +18,6 @@ $( document ).ready(function() {
                         if(dataofconfirm.roleId){
                            localStorage.setItem("roleid", dataofconfirm.roleId);
                            }
-                        
                         if(dataofconfirm.roleId == "user"){
                             openPage('templates/route.html', dataofconfirm);
                         }else if(dataofconfirm.roleId == "admin"){
@@ -25,11 +25,9 @@ $( document ).ready(function() {
                         }else{
                             alert("Unable to login")
                         }
-                          
-                    }
+                     }
                 });
         }
- 
       function openPage(url, loginData){
            $.ajax({
                 url: url,

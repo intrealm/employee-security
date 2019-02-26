@@ -7,18 +7,12 @@ $( document ).ready(function() {
     
     function renderAdminPage(data){
         var admindata = data;
-
         $("#usrname").html(admindata.userName);
         $("#route").html(admindata.routeNumber);
-        
         userData(data);
     }
-    
     function userData(data){
-        debugger;
-        console.log(data);
         var html= '';
-           
             html += "<div class='col-md-12'>";
             html += "<div class='col-md-12'>";
             html += '<p> Route Number:<span id="usrname">'+data[0].routeNumber+'</span></p>';
@@ -55,9 +49,7 @@ $( document ).ready(function() {
                      html += '<input type="checkbox" value="" >';
                      html += '</td>';
                }
-            html += '</tr>';   
-           
-               
+            html += '</tr>';    
            })
             html += '</table>';
             html += "</div>";
