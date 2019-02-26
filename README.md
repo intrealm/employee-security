@@ -14,7 +14,7 @@ Spring boot<br/>
       node server.js or npm start
 ## Server side application
 
-##Running as a Packaged Application
+## Running as a Packaged Application
 If you use the Spring Boot Maven or Gradle plugins to create an executable jar, you can run your application using java -jar, as shown in the following example:
 
 $ java -jar target/myapplication-0.0.1-SNAPSHOT.jar
@@ -25,7 +25,7 @@ $ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \
        
        
        
-##Using the Maven Plugin
+## Using the Maven Plugin
 The Spring Boot Maven plugin includes a run goal that can be used to quickly compile and run your application. Applications run in an exploded form, as they do in your IDE. The following example shows a typical Maven command to run a Spring Boot application:
 
 $ mvn spring-boot:run
