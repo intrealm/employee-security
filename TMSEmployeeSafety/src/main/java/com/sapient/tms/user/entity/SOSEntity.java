@@ -17,7 +17,7 @@ public class SOSEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String userName;
-	private int routeNumber;
+	private int routeId;
 	private Date raisedOn;
 	private Time raisedAt;
 	private Date resolvedOn;
@@ -30,8 +30,8 @@ public class SOSEntity {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public int getRouteNumber() {
-		return routeNumber;
+	public int getRouteId() {
+		return routeId;
 	}
 	public Date getRaisedOn() {
 		return raisedOn;
@@ -45,8 +45,8 @@ public class SOSEntity {
 	public void setResolvedOn(Date resolvedOn) {
 		this.resolvedOn = resolvedOn;
 	}
-	public void setRouteNumber(int routeNumber) {
-		this.routeNumber = routeNumber;
+	public void setRouteId(int routeNumber) {
+		this.routeId = routeNumber;
 	}
 	public Time getRaisedAt() {
 		return raisedAt;

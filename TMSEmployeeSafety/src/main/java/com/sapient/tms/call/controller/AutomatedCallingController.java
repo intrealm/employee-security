@@ -18,5 +18,6 @@ public class AutomatedCallingController {
 	public void makeCall(@PathVariable(name = "phoneNumber") String phoneNumber)
 	{
 		makeCallService.setUpCall(phoneNumber,null); 
+		
 	}
 }

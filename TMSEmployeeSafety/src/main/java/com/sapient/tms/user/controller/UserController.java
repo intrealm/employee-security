@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,6 +59,8 @@ public class UserController {
 		return new HashMap<>();
 	}
 
+	
+	
 	private String getSalt(String userName) {
 	   UserEntity user=this.userRepository.findByUserName(userName);
 	   String salt=null;
@@ -76,5 +79,27 @@ public class UserController {
 		return null;
 
 	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public void logout(HttpServletRequest request) {
+		HttpSession session=request.getSession(false);				
+		if(session!=null)
+		{
+			String sessionId=session.getId();
+			try {
+				cachingService.invalidate(sessionId);
+			} catch (JSONException e) {
+				logger.info("Unable to logout from application due to : "+e.getMessage());
+			}
+		}
+	
 	}
+	
+	@RequestMapping(value = "/getCoordinates/{routeId}", method = RequestMethod.GET)
+	public String getCoordinates(@PathVariable(name = "routeId") int routeId) {
+		String latitude="28.535517";
+		String longitude="77.3910";
+		return "{latitude:"+latitude+",longitude:"+longitude+"}";
+	}
+}
 	

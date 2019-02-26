@@ -47,4 +47,5 @@ public class RouteController {
 		final List<RouteSequenceEntity> activeRoutes = this.routeSequenceRepository.findByRouteId(routeId);	
 		return activeRoutes;
 	}
+	
 }
