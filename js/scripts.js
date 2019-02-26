@@ -1,5 +1,5 @@
 $( document ).ready(function() {  
-    
+        var roleid;
         openPage("../templates/signin.html", '');
         $(document).on('click','.btn', login);
     
@@ -14,7 +14,10 @@ $( document ).ready(function() {
                     contentType: false,
                     type: 'POST',
                     success: function (dataofconfirm) {
-                    
+                        if(dataofconfirm.roleId){
+                           localStorage.setItem("roleid", dataofconfirm.roleId);
+                           }
+                        
                         if(dataofconfirm.roleId == "user"){
                             openPage('templates/route.html', dataofconfirm);
                         }else if(dataofconfirm.roleId == "admin"){
@@ -33,8 +36,6 @@ $( document ).ready(function() {
                 type: 'GET',
                 success: function (data) {
                     $("#pageview").html(data);
-                    $("#pageview").html(data);
-                    
                   
                 }
             });
