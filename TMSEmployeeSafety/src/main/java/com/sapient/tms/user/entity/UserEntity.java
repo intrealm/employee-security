@@ -24,6 +24,8 @@ public class UserEntity {
 	
 	private String address;
 	
+	private String salt;
+	
 	private String dropLocation;
 	public String getAddress() {
 		return address;
@@ -47,6 +49,16 @@ public class UserEntity {
 
 	public Long getPhoneNumber() {
 		return phoneNumber;
+	}
+
+
+	public String getSalt() {
+		return salt;
+	}
+
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 
