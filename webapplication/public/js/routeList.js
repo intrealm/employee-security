@@ -19,27 +19,7 @@ $( document ).ready(function() {
     $(document).on('click', '#completetrip', tripComplete);
     $(document).on('click', '.start-trip', startTrip);
 	$(document).on('click', '#trackrtip', naviagatetoTrack);
-    function sosDetailspage(){
-        $.get( "http://localhost:9091/sosdetails/"+this.id, function(data) {
-              renderSosDetailspage(data);
-           });   
-    }
-	
-	function renderSosDetailspage(data){
-        var sosHtml= '';
-		    sosHtml +='<div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 sosdetailspage" >';
-            sosHtml += "<h3 class='text-center'>SOS</h3>";
-            sosHtml += "<p><b>Phone Number</b> :"+data.phonenumber+"</p>";
-            sosHtml += "<p><b>Route</b> :"+data.routeid+"</p>";
-            sosHtml += "<p><b>User Name</b> :"+data.username+"</p>";
-            sosHtml += "<p><b>Shift</b> :"+data.shift+"</p>";
-            sosHtml +='<div class="col-md-12 col-xs-12" >';            
-
-            sosHtml += "</div>";
-            sosHtml += "</div>";
-        
-            $("#pageview").html(sosHtml); 
-	}
+    
 	function naviagatetoTrack()
 	{
       $.get( "templates/track.html", function(data) {
@@ -52,6 +32,16 @@ $( document ).ready(function() {
            console.log(data)
      });
     }
+    
+    function sosDetailspage(){
+       var sosId = this.id;
+         localStorage.setItem("sosId", sosId)
+        $.get("templates/SoSdetailPage.html", function(data) {
+       
+          $("#pageview").html(data);
+          });
+     }
+    
     function userData(data){
        
         console.log(data);
