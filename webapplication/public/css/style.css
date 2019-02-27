@@ -80,4 +80,8 @@ b{
 .table tr:nth-of-type(odd){
     background-color: #8a6d3b30;
 }
-#8a6d3b30
+.sosdetailspage{
+    padding: 20px;
+    background: #8a6d3b30;
+    border-radius: 5px;
+}
