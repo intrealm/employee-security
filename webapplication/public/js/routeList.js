@@ -28,6 +28,7 @@ $( document ).ready(function() {
 	function renderSosDetailspage(data){
         var sosHtml= '';
 		    sosHtml +='<div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 sosdetailspage" >';
+            sosHtml += "<h3 class='text-center'>SOS</h3>";
             sosHtml += "<p><b>Phone Number</b> :"+data.phonenumber+"</p>";
             sosHtml += "<p><b>Route</b> :"+data.routeid+"</p>";
             sosHtml += "<p><b>User Name</b> :"+data.username+"</p>";
