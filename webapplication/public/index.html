@@ -11,10 +11,27 @@
      <link href="css/style.css" rel="stylesheet">            
   </head>
   <body>
-    <div id = "pageview"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <div id="pageview"></div>
+      <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.min.js"></script>
+    
     <script src="js/scripts.js"></script>
+      
+      
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="alertModal" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        
+        <div class="modal-header"> 
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button> 
+            <h4 class="modal-title" id="mySmallModalLabel">User deboarded/ boarded message</h4> 
+        </div>
+        <div class="modal-body"><p id="content"></p></div>
+      
+    </div>
+  </div>
+</div>
   </body>
 </html> 

@@ -1,7 +1,8 @@
 // Normal User
-
+var getRoutedata;
 $( document ).ready(function() {
     $.get( "http://localhost:9091/displayRoute/souravp", function(data) {
+        getRoutedata = data;
             renderAdminPage(data);
     });
      
@@ -19,16 +20,16 @@ $( document ).ready(function() {
         var html= '';
             html += "<div class='col-md-12'>";
             html += "<div class='col-md-12'>";
-            html += '<p> Route Number:<span id="usrname">'+data[0].routeNumber+'</span></p>';
-            html += '<p> Name:<span id="usrname">'+data[0].userName+'</span></p>';
+            html += '<p> <b>Route Number:</b><span id="usrname">'+data[0].routeNumber+'</span></p>';
+            html += '<p> <b> Name:</b><span id="usrname">'+data[0].userName+'</span></p>';
             html += "</div>";
-            html += '<table class="table table-bordered">';
+            html += '<table class="table table-bordered table-responsive">';
             html += '<tr>';
-            html += '<td><input type="checkbox" value=""> Select All</td>';
-            html += '<td>Drop Location</td>';
-            html += '<td>Delayed By</td>';
-            html += '<td>Boarded</td>';
-            html += '<td>Deboarded</td>';
+            html += '<th><input type="checkbox" value=""> Select All</th>';
+            html += '<th>Drop Location</th>';
+            html += '<th>Delayed By</th>';
+            html += '<th>Boarded</th>';
+            html += '<th>Deboarded</th>';
             html += '</tr>';
             data.forEach(function(value,index){
             html += '<tr>';
@@ -65,7 +66,9 @@ $( document ).ready(function() {
         var hetUsername = $(".deboarded").attr("data-attr");
          $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
           if(data == true){
-              alert("User have boarded");
+         
+               $("#content").html("User have boarded");
+              $("#alertModal").modal('show');
               $(".boarded").prop("checked", true).attr("disabled", true);
           }
      });
@@ -75,9 +78,14 @@ $( document ).ready(function() {
         var hetUsername = $(".deboarded").attr("data-attr");
         $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
             if(data == true){
-              alert("User have deboarded");
+         
+                 $("#content").html("User have deboarded");
+              $("#alertModal").modal('show');
                 $(".deboarded").prop("checked", true).attr("disabled", true);
           }
      });
     }
+    
+    
+    
 });

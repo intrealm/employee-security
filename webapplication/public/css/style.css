@@ -1,13 +1,16 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-color: #ffffff;
 }
 
 .form-signin {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+        padding: 20px;
+    background: #d2c0a0;
+    border-radius: 5px;
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
@@ -38,3 +41,43 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.logo-container{
+
+        height: 100px;
+        padding-bottom: 20px;
+}
+.login-btn{
+        margin-top: 40px;
+}
+.btn-default{
+        background-color: #8a6d3b;
+        border-color: #8a6d3b;
+        color: #fff;
+        padding: 11px 50px;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{
+    border: 1px solid #8a6d3b;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #8a6d3b;
+    border-color: #8a6d3b;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #8a6d3b;
+    border-color: #8a6d3b;
+}
+.table tr th{
+        color: #8a6d3b;
+}
+b{
+    color: #8a6d3b;
+}
+.sos-btn{
+    margin-right: 100px;
+}
+.table tr:nth-of-type(odd){
+    background-color: #8a6d3b30;
+}
+#8a6d3b30

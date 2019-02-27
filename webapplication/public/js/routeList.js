@@ -15,7 +15,7 @@ $( document ).ready(function() {
     $(document).on('click', '.sos-btn', createSos);
     $(document).on('click', '.boarded', userBoarded);
     $(document).on('click', '.deboarded', userDeBoarded);
-    $(document).on('click', '.completetrip', tripComplete);
+    $(document).on('click', '#completetrip', tripComplete);
     $(document).on('click', '.start-trip', startTrip);
 	$(document).on('click', '#trackrtip', naviagatetoTrack);
     
@@ -40,8 +40,15 @@ $( document ).ready(function() {
             html += "<div class='col-md-12'>";
             html += '<table class="table table-bordered" id="SosList">';
             html += '<tr>';
-            html += '<td colspan="5" style="text-align:center">SOS lists</td>';
+            html += '<th colspan="5" style="text-align:center">SOS lists</th>';
             html += '</tr>';
+            html += '<tr>';
+            html += '<th>Raised At</th>';
+            html += '<th>Raised On</th>';
+            html += '<th>Route Number</th>';
+            html += '<th>User Name</th>';
+            html += '<th>Start Time</th>';
+            html += '</tr>'
            sosdata.forEach(function(value,index){
            
             html += '<tr id='+value.id+' style="cursor:pointer" >';
@@ -53,16 +60,16 @@ $( document ).ready(function() {
             html += '</tr>'; 
            })
             html += '</table>';
-            html += '<table class="table table-bordered" id="routelisttable">';
+            html += '<table class="table table-bordered table-responsive" id="routelisttable">';
             html += '<tr>';
-            html += '<td colspan="5" style="text-align:center">Route lists</td>';
+            html += '<th colspan="5" style="text-align:center">Route lists</th>';
             html += '</tr>';
             html += '<tr>';
-            html += '<td>routeNumber</td>';
-            html += '<td>shift</td>';
-            html += '<td>delayedBy</td>';
-            html += '<td>vehicleNumber</td>';
-            html += '<td>startTime</td>';
+            html += '<th>Route Number</th>';
+            html += '<th>Shift</th>';
+            html += '<th>Delayed By</th>';
+            html += '<th>Vehicle Number</th>';
+            html += '<th>Start Time</th>';
             html += '</tr>';
            data.forEach(function(value,index){
                
@@ -89,6 +96,7 @@ $( document ).ready(function() {
            
             $.get( "http://localhost:9091/displayRouteForAdmin/"+this.id, function(data) {
                getRoutedata = data;
+                console.log(getRoutedata)
                AdminData(data);
                
            });      
@@ -100,20 +108,20 @@ $( document ).ready(function() {
         console.log(data);
         var html= '';
             html += "<div class='col-md-12'>";
-            html += "<div class='col-md-6'>";
-            html += '<p> Route Number:<span id="usrname">'+data[0].routeNumber+'</span></p>';
-            html += '<p> Name:<span id="usrname">'+data[0].userName+'</span></p>';
+            html += "<div class='col-md-6 col-md-6 col-xs-6 col-sm-6'>";
+            html += '<p><b> Route Number:</b><span id="usrname">'+data[0].routeNumber+'</span></p>';
+            html += '<p><b> Name: </b><span id="usrname">'+data[0].userName+'</span></p>';
             html += "</div>";
-            html += "<div class='col-md-6'>";
-            html += '<button class="btn btn-default sos-btn" type="submit">SOS</button>';
+            html += "<div class='col-md-6 col-xs-6 col-sm-6'>";
+            html += '<button class="btn btn-default sos-btn pull-right" type="submit">SOS</button>';
             html += "</div>";
-            html += '<table class="table table-bordered">';
+            html += '<table class="table table-bordered table-responsive">';
             html += '<tr>';
-            html += '<td><input type="checkbox" value=""> Select All</td>';
-            html += '<td>Drop Location</td>';
-            html += '<td>Delayed By</td>';
-            html += '<td>Boarded</td>';
-            html += '<td>Deboarded</td>';
+            html += '<th><input type="checkbox" value=""> Select All</th>';
+            html += '<th>Drop Location</th>';
+            html += '<th>Delayed By</th>';
+            html += '<th>Boarded</th>';
+            html += '<th>Deboarded</th>';
             html += '</tr>';
             data.forEach(function(value,index){
             html += '<tr>';
@@ -154,18 +162,21 @@ $( document ).ready(function() {
     
     function startTrip(){
         
-        $.get("http://localhost:9091/board/startTrip/"+getRoutedata[0].routeId, function(data) {
+        $.get("http://localhost:9091/board/"+getRoutedata[0].userName+"/"+getRoutedata[0].routeId, function(data) {
             if(data == true){
-                alert("Trip has started");
+                localStorage.setItem("routeID", getRoutedata[0].routeId);
+                $("#content").html("Trip has started");
+              $("#alertModal").modal('show');
                 $(".track-trip").show();
                 $(".start-trip").hide();
             }
            });     
     }
     function tripComplete(){
-        $.get("http://localhost:9091/board/completeTrip/"+getRoutedata[0].routeId, function(data) {
+        $.get("http://localhost:9091/board/"+getRoutedata[0].userName+"/"+getRoutedata[0].routeId, function(data) {
             if(data == true){
-                alert("Trip has completed");
+               $("#content").html("Trip has completed");
+              $("#alertModal").modal('show');
                 $(".track-trip").show();
                 $(".start-trip").hide();
             }
@@ -174,9 +185,11 @@ $( document ).ready(function() {
     function userBoarded(){
         //$(".boarded").prop("checked", true);
         var hetUsername = $(".deboarded").attr("data-attr");
+        debugger;
          $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
           if(data == true){
-              alert("User have boarded");
+              $("#content").html("User have boarded");
+              $("#alertModal").modal('show');
               $(".boarded").prop("checked", true).attr("disabled", true);
           }
      });
@@ -186,7 +199,8 @@ $( document ).ready(function() {
         var hetUsername = $(".deboarded").attr("data-attr");
         $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
             if(data == true){
-              alert("User have deboarded");
+                $("#content").html("User have deboarded");
+              $("#alertModal").modal('show');
                 $(".deboarded").prop("checked", true).attr("disabled", true);
           }
      });

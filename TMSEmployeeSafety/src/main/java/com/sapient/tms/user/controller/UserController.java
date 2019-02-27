@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -95,11 +96,15 @@ public class UserController {
 	
 	}
 	
-	@RequestMapping(value = "/getCoordinates/{routeId}", method = RequestMethod.GET)
-	public String getCoordinates(@PathVariable(name = "routeId") int routeId) {
+	@RequestMapping(value = "/getCoordinates/{routeId}", method = RequestMethod.GET,produces="application/json")
+	public String getCoordinates(@PathVariable(name = "routeId") int routeId) throws Exception {
 		String latitude="28.535517";
 		String longitude="77.3910";
-		return "{latitude:"+latitude+",longitude:"+longitude+"}";
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("latitude", latitude);
+		jsonObject.put("longitude", longitude);
+		return jsonObject.toString();
 	}
 }
 	
