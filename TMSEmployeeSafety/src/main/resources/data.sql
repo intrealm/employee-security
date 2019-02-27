@@ -15,3 +15,9 @@ insert into route_sequence_entity (user_name,boarded,deboarded,drop_location,ora
 
 insert into escalation_entity (user_name,phone_number,escalation_phone_numbers) values ('shipuri','8860095906','8860095906');
 
+insert into sos_entity (id,user_Name,route_Id,raised_On,raised_At,resolved_On,resolved_At,resolved)
+values(1,'shipuri',1,sysdate,sysdate,sysdate,sysdate,0) ;
+
+insert into user_last_latlong(id,user_Id,lat,lon)
+values(1,10001,28.6077159025,77.224249103);
+
