@@ -1,6 +1,8 @@
+
+var SosData;
 $( document ).ready(function() {
     var getSosId = localStorage.getItem("sosId");
-        var SosData;
+        
     $.get( "http://localhost:9091/sosdetails/"+getSosId, function(data) {
               SosData = data;
               renderSosDetailspage(data);
@@ -19,26 +21,29 @@ $( document ).ready(function() {
             sosHtml += "</div>";
             sosHtml += "</div>";
             $("#sostable").html(sosHtml); 
+            propogateOnMapSoS();
 	}
 
 function propogateOnMapSoS() {
-     var coordinatesdata;
-     $.get("http://localhost:9091/getCoordinates/"+localStorage.getItem("routeID"), function(data) {
-         coordinatesdata = data;
-         debugger;
-         var mapProp= {
-      center:new google.maps.LatLng(coordinatesdata.latitude, coordinatesdata.longitude),
+
+console.log(SosData);
+
+var mapProp= {
+      center:new google.maps.LatLng(SosData.lat, SosData.long),
       zoom:17,
       disableDefaultUI: true,
       draggable:false
     };
-    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 
-    var map = new google.maps.Map(document.getElementById("googleMapSos"),mapProp);
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+var map = new google.maps.Map(document.getElementById("googleMapSos"),mapProp);
 
     var marker = new google.maps.Marker({position: mapProp.center, icon: iconBase+'cabs.png'});
 
     marker.setMap(map);
-                 }); 
+    
 
 }
+     
+     
+    
