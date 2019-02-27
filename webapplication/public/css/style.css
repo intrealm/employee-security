@@ -85,3 +85,9 @@ b{
     background: #8a6d3b30;
     border-radius: 5px;
 }
+#sostable{
+    margin-bottom: 50px;
+    display: block;
+    position: relative;
+    min-height: 1px;
+}
