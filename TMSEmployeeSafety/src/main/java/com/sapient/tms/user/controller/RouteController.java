@@ -39,8 +39,9 @@ public class RouteController {
 	
 	@RequestMapping(value = "/allActiveRoutes", method = RequestMethod.GET)
 	public List<RouteEntity> getAllRoute() {
-		return routeRepository.findAllRoutesBasedOnStartedAndCompletedFlag(true,false);	
+		return routeRepository.findAllRoutesBasedOnCompletedFlag(false);	
 	}
+	
 	
 	@RequestMapping(value = "/displayRouteForAdmin/{routeId}", method = RequestMethod.GET)
 	public List<RouteSequenceEntity> displayRoute(@PathVariable(name = "routeId") int routeId) {

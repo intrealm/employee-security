@@ -14,7 +14,7 @@ public interface RouteSequenceRepository extends JpaRepository<RouteSequenceEnti
 
 	RouteSequenceEntity findByUserNameAndRouteIdIn(String userName, int routeId);
 	
-	@Query(value = "SELECT rs FROM RouteSequenceEntity rs where rs.boarded is true", nativeQuery = false)
+	@Query(value = "SELECT rs FROM RouteSequenceEntity rs where rs.boarded = 0 and rs.routeId=:routeId", nativeQuery = false)
 	List<RouteSequenceEntity> getBoardedEmployees(int routeId);
 	
 	@Query(value = "SELECT rs FROM RouteSequenceEntity rs join RouteEntity re ON rs.routeId=re.id where rs.boarded = true and rs.deboarded = false and re.startTime is not null")
