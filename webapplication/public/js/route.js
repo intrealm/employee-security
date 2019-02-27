@@ -81,7 +81,7 @@ $( document ).ready(function() {
     function userDeBoarded(){
         //$(".deboarded").prop("checked", true);
         var hetUsername = $(".deboarded").attr("data-attr");
-        $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
+        $.get( "http://localhost:9091/deboard/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
             if(data == true){
          
                  $("#content").html("User have deboarded");
