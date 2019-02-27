@@ -24,7 +24,7 @@ public class RouteController {
 
 	@Autowired
 	private RouteSequenceRepository routeSequenceRepository;
-
+	
 	@Autowired
 	private RouteRepository routeRepository;
 
@@ -33,27 +33,28 @@ public class RouteController {
 
 	@RequestMapping(value = "/displayRoute/{userName}", method = RequestMethod.GET)
 	public List<RouteSequenceEntity> displayRoute(@PathVariable(name = "userName") String userName) {
-		final List<RouteEntity> routes = routeRepository.findAllInactiveRoutesForUser(userName, false, false);
+		final List<RouteEntity> routes=routeRepository.findAllInactiveRoutesForUser(userName,false,false);
 		if (!CollectionUtils.isEmpty(routes)) {
-			int firstRouteId = routes.iterator().next().getId();
+		int firstRouteId=routes.iterator().next().getId();
 			final List<RouteSequenceEntity> activeRouteSequence = this.routeSequenceRepository
 					.findByRouteId(firstRouteId);
-			return activeRouteSequence;
+		return activeRouteSequence;
 		}
 		return null;
 	}
-
+	
 	@RequestMapping(value = "/allActiveRoutes", method = RequestMethod.GET)
 	public List<RouteEntity> getAllRoute() {
-		return routeRepository.findAllRoutesBasedOnStartedAndCompletedFlag(true, false);
+		return routeRepository.findAllRoutesBasedOnCompletedFlag(false);	
 	}
-
+	
+	
 	@RequestMapping(value = "/displayRouteForAdmin/{routeId}", method = RequestMethod.GET)
 	public List<RouteSequenceEntity> displayRoute(@PathVariable(name = "routeId") int routeId) {
-		final List<RouteSequenceEntity> activeRoutes = this.routeSequenceRepository.findByRouteId(routeId);
+		final List<RouteSequenceEntity> activeRoutes = this.routeSequenceRepository.findByRouteId(routeId);	
 		return activeRoutes;
 	}
-
+	
 	@RequestMapping(value = "/getCoordinates/{routeId}", method = RequestMethod.GET, produces = "application/json")
 	public String getCoordinates(@PathVariable(name = "routeId") int routeId) throws Exception {
 
@@ -63,5 +64,5 @@ public class RouteController {
 		json.put("longitude", cabLastLocationEntity.getLon());
 		json.put("latitude", cabLastLocationEntity.getLat());
 		return json.toString();
-	}
+}
 }
