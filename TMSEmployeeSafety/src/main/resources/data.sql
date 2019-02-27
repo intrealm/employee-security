@@ -31,3 +31,6 @@ insert into user_entity (id,address,drop_location,encrypted_password,name,phone_
 
 insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10006','sapient noida','sapient noida', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'John Doe',8860095906, 'admin','admin','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
 
+insert into cab_last_latlong(id,route_Id,lat,lon)
+values(1,2,28.6469655,77.0932634);
+
