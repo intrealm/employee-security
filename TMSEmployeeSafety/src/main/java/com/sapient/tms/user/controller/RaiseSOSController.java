@@ -2,7 +2,6 @@ package com.sapient.tms.user.controller;
 
 import java.util.List;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,38 +14,34 @@ import com.sapient.tms.user.entity.SOSEntity;
 
 @RestController
 public class RaiseSOSController {
-	
+
 	@Autowired
 	private RaiseSosImpl raiseSosImpl;
-	
+
 	@Autowired
 	private SosEntityRepo sosEntityRepo;
-	
-	@RequestMapping(value="/raiseSOS/{username}/{routeId}", method = RequestMethod.GET)
-	public String raiseSos(@PathVariable(value="username") String userName, @PathVariable(value="routeId") String routeId){
+
+	@RequestMapping(value = "/raiseSOS/{username}/{routeId}/{lat}/{long}", method = RequestMethod.GET)
+	public String raiseSos(@PathVariable(value = "username") String userName,
+			@PathVariable(value = "routeId") String routeId, @PathVariable(value = "lat", required = false) String lat,
+			@PathVariable(value = "long", required = false) String lon) {
 		int routeNo = Integer.parseInt(routeId);
-		return raiseSosImpl.raiseSosService(userName,routeNo);
+		return raiseSosImpl.raiseSosService(userName, routeNo, lat, lon);
 	}
-	
-	@RequestMapping(value="/fetchSOSRequests", method = RequestMethod.GET)
-	public List<SOSEntity> fetchSOSActiveRequests()
-	{
+
+	@RequestMapping(value = "/fetchSOSRequests", method = RequestMethod.GET)
+	public List<SOSEntity> fetchSOSActiveRequests() {
 		return sosEntityRepo.findByResolved(false);
 	}
-	
-	@RequestMapping(value="/resolveSOSRequest", method = RequestMethod.GET)
-	public List<SOSEntity> resolveSOSRequest()
-	{
+
+	@RequestMapping(value = "/resolveSOSRequest", method = RequestMethod.GET)
+	public List<SOSEntity> resolveSOSRequest() {
 		return sosEntityRepo.findByResolved(false);
 	}
-	
-	
-	@RequestMapping(value="/sosdetails/{sosid}",method=RequestMethod.GET,produces="application/JSON")
-	public String fetchsosdetails(final @PathVariable("sosid") String sosid)
-	{
+
+	@RequestMapping(value = "/sosdetails/{sosid}", method = RequestMethod.GET, produces = "application/JSON")
+	public String fetchsosdetails(final @PathVariable("sosid") String sosid) {
 		return raiseSosImpl.fetchSosData(sosid).toString();
 	}
-	
-	
-  
+
 }

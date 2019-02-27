@@ -1,5 +1,7 @@
 package com.sapient.tms.calling.service.impl;
 
+import java.util.Optional;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,65 +20,84 @@ import com.sapient.tms.user.entity.UserLastLocationEntity;
 
 @Component
 public class RaiseSosImpl {
-	
+
 	@Autowired
 	private RaiseSosDaoImpl raiseSosDaoImpl;
-	
+
 	@Autowired
 	private SosEntityRepo sosEntityRepo;
-	
+
 	@Autowired
 	private RouteRepository routeRepository;
-	
+
 	@Autowired
 	private UserLocationRepository userLocationRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
-	public String raiseSosService(String username, int routeNumber) {
+
+	public String raiseSosService(String username, int routeNumber, String lat, String lon) {
 		boolean output = raiseSosDaoImpl.createSos(username, routeNumber);
-		if(output) {
+		if (lat != null && !lat.isEmpty() && lon != null && !lon.isEmpty()) {
+			// update user
+			UserEntity user = userRepository.findByUserName(username);
+			Optional<UserLastLocationEntity> userLocationOpt = userLocationRepository
+					.findByUserId(Integer.parseInt(user.getId()));
+			UserLastLocationEntity userLocation = null;
+			if (userLocationOpt.isPresent()) {
+				userLocation = userLocationOpt.get();
+			} else {
+				userLocation = new UserLastLocationEntity();
+				userLocation.setUserId(Integer.parseInt(user.getId()));
+				userLocation.setLat(Double.parseDouble(lat));
+				userLocation.setLon(Double.parseDouble(lon));
+			}
+			userLocationRepository.save(userLocation);
+		}
+		if (output) {
 			// send SMS
 			return "SOS Raised";
 		} else {
 			return "SOS Not Raised";
 		}
 	}
-	
-	public JSONObject fetchSosData(String sosid)
-	{
+
+	public JSONObject fetchSosData(String sosid) {
 		SOSEntity sosEntity = sosEntityRepo.findById(Integer.parseInt(sosid)).orElse(null);
-		
-		if(sosEntity==null)
+
+		if (sosEntity == null)
 			return new JSONObject();
-		
+
 		RouteEntity routeEntity = routeRepository.findById(sosEntity.getRouteId()).orElse(null);
-		
+
 		UserEntity userEntity = userRepository.findByUserName(sosEntity.getUserName());
-		
-		UserLastLocationEntity userLocationEntity = userLocationRepository.findByUserId(Integer.parseInt(userEntity.getId()));
-		
-		
+
+		Optional<UserLastLocationEntity> userLocationEntityoption = userLocationRepository
+				.findByUserId(Integer.parseInt(userEntity.getId()));
+
 		JSONObject jsonObject = new JSONObject();
 		try {
-			jsonObject.put("routeid", ""+sosEntity.getRouteId());
-			
+			jsonObject.put("routeid", "" + sosEntity.getRouteId());
+
 			jsonObject.put("username", userEntity.getName());
-			if(ShiftEnum.DROP.equals(routeEntity.getShift()))
+			if (ShiftEnum.DROP.equals(routeEntity.getShift()))
 				jsonObject.put("shift", "DROP");
 			else
 				jsonObject.put("shift", "PICKUP");
 			jsonObject.put("phonenumber", userEntity.getPhoneNumber());
-			jsonObject.put("lat", userLocationEntity.getLat());
-			jsonObject.put("long", userLocationEntity.getLon());
+			if (userLocationEntityoption.isPresent()) {
+				UserLastLocationEntity userLocation = userLocationEntityoption.get();
+				jsonObject.put("lat", userLocation.getLat());
+				jsonObject.put("long", userLocation.getLon());
+			}
+
 			return jsonObject;
-		
+
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		return new JSONObject();
 	}
-	
+
 }
