@@ -124,7 +124,7 @@ $( document ).ready(function() {
             html += '<p><b> Name: </b><span id="usrname">'+data[0].userName+'</span></p>';
             html += "</div>";
             html += "<div class='col-md-6 col-xs-6 col-sm-6'>";
-            html += '<button class="btn btn-default sos-btn pull-right" type="submit">SOS</button>';
+            
             html += "</div>";
             html += '<table class="table table-bordered table-responsive">';
             html += '<tr>';
@@ -173,7 +173,7 @@ $( document ).ready(function() {
     
     function startTrip(){
         
-        $.get("http://localhost:9091/board/"+getRoutedata[0].userName+"/"+getRoutedata[0].routeId, function(data) {
+        $.get("http://localhost:9091/startTrip/"+getRoutedata[0].routeId, function(data) {
             if(data == true){
                 localStorage.setItem("routeID", getRoutedata[0].routeId);
                 $("#content").html("Trip has started");
@@ -184,7 +184,7 @@ $( document ).ready(function() {
            });     
     }
     function tripComplete(){
-        $.get("http://localhost:9091/board/"+getRoutedata[0].userName+"/"+getRoutedata[0].routeId, function(data) {
+        $.get("http://localhost:9091/completeTrip/"+getRoutedata[0].routeId, function(data) {
             if(data == true){
                $("#content").html("Trip has completed");
               $("#alertModal").modal('show');
