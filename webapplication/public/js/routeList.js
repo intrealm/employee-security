@@ -18,15 +18,15 @@ $( document ).ready(function() {
     $(document).on('click', '.deboarded', userDeBoarded);
     $(document).on('click', '#completetrip', tripComplete);
     $(document).on('click', '.start-trip', startTrip);
-	$(document).on('click', '#trackrtip', naviagatetoTrack);
+    $(document).on('click', '#trackrtip', naviagatetoTrack);
     
-	function naviagatetoTrack()
-	{
+    function naviagatetoTrack()
+    {
       $.get( "templates/track.html", function(data) {
           $("#pageview").html(data);
           });
-	}
-	
+    }
+    
     function createSos(){ 
     $.get("http://localhost:9091/raiseSOS/"+getRoutedata[0].userName+"/"+getRoutedata[0].routeId+"/28.6314512/77.21666720000007", function(data) {
            console.log(data)
@@ -136,7 +136,7 @@ $( document ).ready(function() {
             html += '</tr>';
             data.forEach(function(value,index){
             html += '<tr>';
-            html += '<td>'+value.userName+'</td>';
+           html += '<td>'+value.name+'</td>';
             html += '<td>'+value.dropLocation+'</td>';
             html += '<td>'+value.delayedBy+'</td>';
                if(value.boarded == "true"){
@@ -199,7 +199,7 @@ $( document ).ready(function() {
         debugger;
          $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
           if(data == true){
-              $("#content").html("User have boarded");
+          $("#content").html(hetUsername+" has boarded");
               $("#alertModal").modal('show');
               $(".boarded").prop("checked", true).attr("disabled", true);
           }
@@ -210,7 +210,7 @@ $( document ).ready(function() {
         var hetUsername = $(".deboarded").attr("data-attr");
         $.get( "http://localhost:9091/board/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
             if(data == true){
-                $("#content").html("User have deboarded");
+                $("#content").html(hetUsername+" has deboarded");
               $("#alertModal").modal('show');
                 $(".deboarded").prop("checked", true).attr("disabled", true);
           }
