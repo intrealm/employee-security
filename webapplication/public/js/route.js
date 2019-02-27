@@ -84,7 +84,7 @@ $( document ).ready(function() {
         $.get( "http://localhost:9091/deboard/"+hetUsername+"/"+getRoutedata[0].routeId, function(data) {
             if(data == true){
          
-                 $("#content").html("User have deboarded");
+                 $("#content").html(hetUsername+" has deboarded");
               $("#alertModal").modal('show');
                 $(".deboarded").prop("checked", true).attr("disabled", true);
           }
