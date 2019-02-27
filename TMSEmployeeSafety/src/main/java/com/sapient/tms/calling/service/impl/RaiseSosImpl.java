@@ -1,5 +1,9 @@
 package com.sapient.tms.calling.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +41,6 @@ public class RaiseSosImpl {
 	public String raiseSosService(String username, int routeNumber) {
 		boolean output = raiseSosDaoImpl.createSos(username, routeNumber);
 		if(output) {
-			// send SMS
 			return "SOS Raised";
 		} else {
 			return "SOS Not Raised";
@@ -73,10 +76,36 @@ public class RaiseSosImpl {
 			return jsonObject;
 		
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		return new JSONObject();
 	}
-	
+
+	public List<JSONObject> getResolvedSOSRequests(boolean b) {
+		List<SOSEntity> sosList=sosEntityRepo.findByResolved(false);
+		final List<JSONObject> sosObjects=new ArrayList();
+		for(SOSEntity sos:sosList)
+		{
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("userName",sos.getUserName());
+			jsonObject.put("id", sos.getId());
+			jsonObject.put("raisedAt",sos.getRaisedAt());
+			jsonObject.put("raisedOn",sos.getRaisedOn());
+			jsonObject.put("resolvedAt", sos.getResolvedAt());
+			jsonObject.put("resolvedOn", sos.getResolvedOn());
+			jsonObject.put("routeId", sos.getRouteId());
+			Optional<RouteEntity> routeEntity=routeRepository.findById(sos.getRouteId());
+			if(routeEntity.get()!=null)
+			{
+			jsonObject.put("routeNumber", routeEntity.get().getRouteNumber());
+			}
+			sosObjects.add(jsonObject);
+		}
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+		return sosObjects;
+	}
 }

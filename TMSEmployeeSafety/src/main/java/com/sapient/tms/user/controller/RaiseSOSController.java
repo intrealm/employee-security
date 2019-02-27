@@ -28,10 +28,10 @@ public class RaiseSOSController {
 		return raiseSosImpl.raiseSosService(userName,routeNo);
 	}
 	
-	@RequestMapping(value="/fetchSOSRequests", method = RequestMethod.GET)
-	public List<SOSEntity> fetchSOSActiveRequests()
+	@RequestMapping(value="/fetchSOSRequests", method = RequestMethod.GET,produces="application/JSON")
+	public String fetchSOSActiveRequests()
 	{
-		return sosEntityRepo.findByResolved(false);
+		return raiseSosImpl.getResolvedSOSRequests(false).toString();
 	}
 	
 	@RequestMapping(value="/resolveSOSRequest", method = RequestMethod.GET)
@@ -39,7 +39,6 @@ public class RaiseSOSController {
 	{
 		return sosEntityRepo.findByResolved(false);
 	}
-	
 	
 	@RequestMapping(value="/sosdetails/{sosid}",method=RequestMethod.GET,produces="application/JSON")
 	public String fetchsosdetails(final @PathVariable("sosid") String sosid)
