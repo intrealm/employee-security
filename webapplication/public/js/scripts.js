@@ -18,6 +18,7 @@ $( document ).ready(function() {
                            localStorage.setItem("roleid", dataofconfirm.roleId);
                            }
                         if(dataofconfirm.roleId == "user"){
+                            sessionStorage.setItem("userName", dataofconfirm.userName);
                             openPage('templates/route.html', dataofconfirm);
                         }else if(dataofconfirm.roleId == "admin"){
                             openPage('templates/routelist.html', dataofconfirm);

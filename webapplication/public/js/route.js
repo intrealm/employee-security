@@ -1,7 +1,11 @@
 // Normal User
 var getRoutedata;
 $( document ).ready(function() {
-    $.get( "http://localhost:9091/displayRoute/souravp", function(data) {
+
+
+    var userName = sessionStorage.getItem("userName");
+
+    $.get( "http://localhost:9091/displayRoute/"+userName, function(data) {
         getRoutedata = data;
             renderAdminPage(data);
     });
@@ -17,6 +21,7 @@ $( document ).ready(function() {
     $(document).on('click', '.deboarded', userDeBoarded);
     
     function userData(data){
+        
         var html= '';
             html += "<div class='col-md-12'>";
             html += "<div class='col-md-12'>";
