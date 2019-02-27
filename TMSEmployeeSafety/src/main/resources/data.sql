@@ -21,3 +21,6 @@ values(1,'shipuri',1,sysdate,sysdate,sysdate,sysdate,0) ;
 insert into user_last_latlong(id,user_Id,lat,lon)
 values(1,10001,28.6077159025,77.224249103);
 
+insert into cab_last_latlong(id,route_Id,lat,lon)
+values(1,2,28.6469655,77.0932634);
+

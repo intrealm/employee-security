@@ -95,11 +95,5 @@ public class UserController {
 	
 	}
 	
-	@RequestMapping(value = "/getCoordinates/{routeId}", method = RequestMethod.GET)
-	public String getCoordinates(@PathVariable(name = "routeId") int routeId) {
-		String latitude="28.535517";
-		String longitude="77.3910";
-		return "{latitude:"+latitude+",longitude:"+longitude+"}";
-	}
 }
 	

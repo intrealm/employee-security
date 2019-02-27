@@ -5,13 +5,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_last_latlong")
-public class UserLastLocationEntity {
+@Table(name = "cab_last_latlong")
+public class CabLastLocationEntity {
 
 	@Id
 	private String id;
 
-	private Integer userId;
+	private Integer routeId;
 
 	private Double lat;
 
@@ -23,14 +23,6 @@ public class UserLastLocationEntity {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
 	}
 
 	public Double getLat() {
@@ -47,6 +39,14 @@ public class UserLastLocationEntity {
 
 	public void setLon(Double lon) {
 		this.lon = lon;
+	}
+
+	public Integer getRouteId() {
+		return routeId;
+	}
+
+	public void setRouteId(Integer routeId) {
+		this.routeId = routeId;
 	}
 
 }
