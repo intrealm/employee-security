@@ -23,13 +23,20 @@ insert into escalation_entity (user_name,phone_number,escalation_phone_numbers) 
 insert into escalation_entity (user_name,phone_number,escalation_phone_numbers) values ('shamirza','9891660262','9891660262');
 
 
-insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10001','New Delhi','Tilak Nagar', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Simon SIngh',8860095906, 'user','ssingh','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
+insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10001','New Delhi','Tilak Nagar', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Simon SIngh',8585912788, 'user','ssingh','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
 insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10002','Noida Sector 119','Noida Sector 119', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Ravish Kumar',7210806318, 'user','ravkumar','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
 insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10003','Noida Sector 100','Noida Sector 100', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Reema Jain',8585912788, 'user','reejain','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
 insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10004','Gurugram','Sector 15', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Rachit Arora',9953237590, 'user','racarora','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
 insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10005','Gurugram','Sector 12', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Shaheen Mirza',9891660262, 'user','shamirza','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
 
 insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10006','sapient noida','sapient noida', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'John Doe',8860095906, 'admin','admin','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
+
+insert into SOS_ENTITY(id,raised_at,raised_on,resolved,route_id,user_name)
+values(101,sysdate,sysdate,0,3,'racarora');
+
+insert into user_last_latlong(id,user_Id,lat,lon)
+values(101,10004,28.6469655,77.0932634);
+
 
 insert into cab_last_latlong(id,route_Id,lat,lon)
 values(1,2,28.6469655,77.0932634);

@@ -48,6 +48,7 @@ public class UserController {
 				String sessionId = generateSessionId(request);
 				roleSessionMap.put("roleId", validatedUser.getRoleId());
 				roleSessionMap.put("sessionId", sessionId);
+				roleSessionMap.put("userName", userName);
 				try {
 					cachingService.setupSession(sessionId, validatedUser.getRoleId());
 				} catch (JSONException e) {

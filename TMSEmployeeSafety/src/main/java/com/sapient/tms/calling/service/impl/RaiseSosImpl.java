@@ -38,8 +38,24 @@ public class RaiseSosImpl {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public String raiseSosService(String username, int routeNumber) {
+	public String raiseSosService(String username, int routeNumber, String lat, String lon) {
 		boolean output = raiseSosDaoImpl.createSos(username, routeNumber);
+		if (lat != null && !lat.isEmpty() && lon != null && !lon.isEmpty()) {
+			// update user
+			UserEntity user = userRepository.findByUserName(username);
+			Optional<UserLastLocationEntity> userLocationOpt = userLocationRepository
+					.findByUserId(Integer.parseInt(user.getId()));
+			UserLastLocationEntity userLocation = null;
+			if (userLocationOpt.isPresent()) {
+				userLocation = userLocationOpt.get();
+			} else {
+				userLocation = new UserLastLocationEntity();
+				userLocation.setUserId(Integer.parseInt(user.getId()));
+				userLocation.setLat(Double.parseDouble(lat));
+				userLocation.setLon(Double.parseDouble(lon));
+			}
+			userLocationRepository.save(userLocation);
+		}
 		if(output) {
 			return "SOS Raised";
 		} else {
@@ -47,8 +63,7 @@ public class RaiseSosImpl {
 		}
 	}
 	
-	public JSONObject fetchSosData(String sosid)
-	{
+	public JSONObject fetchSosData(String sosid) {
 		SOSEntity sosEntity = sosEntityRepo.findById(Integer.parseInt(sosid)).orElse(null);
 		
 		if(sosEntity==null)
@@ -58,8 +73,8 @@ public class RaiseSosImpl {
 		
 		UserEntity userEntity = userRepository.findByUserName(sosEntity.getUserName());
 		
-		UserLastLocationEntity userLocationEntity = userLocationRepository.findByUserId(Integer.parseInt(userEntity.getId()));
-		
+		Optional<UserLastLocationEntity> userLocationEntityoption = userLocationRepository
+				.findByUserId(Integer.parseInt(userEntity.getId()));
 		
 		JSONObject jsonObject = new JSONObject();
 		try {
@@ -71,8 +86,12 @@ public class RaiseSosImpl {
 			else
 				jsonObject.put("shift", "PICKUP");
 			jsonObject.put("phonenumber", userEntity.getPhoneNumber());
-			jsonObject.put("lat", userLocationEntity.getLat());
-			jsonObject.put("long", userLocationEntity.getLon());
+			if (userLocationEntityoption.isPresent()) {
+				UserLastLocationEntity userLocation = userLocationEntityoption.get();
+				jsonObject.put("lat", userLocation.getLat());
+				jsonObject.put("long", userLocation.getLon());
+			}
+
 			return jsonObject;
 		
 		} catch (JSONException e) {
