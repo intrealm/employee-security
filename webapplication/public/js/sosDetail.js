@@ -8,7 +8,7 @@ $( document ).ready(function() {
               renderSosDetailspage(data);
            }); 
  });
-   
+    var getSosId = localStorage.getItem("sosId");
 	function renderSosDetailspage(data){
         var sosHtml= '';
 		    sosHtml +='<div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 sosdetailspage" >';
@@ -19,10 +19,23 @@ $( document ).ready(function() {
             sosHtml += "<p><b>Shift</b> :"+data.shift+"</p>";
             sosHtml +='<div class="col-md-12 col-xs-12" >';            
             sosHtml += "</div>";
+            sosHtml += "<button id='resolveSOS'>Resolve SOS</button>";
             sosHtml += "</div>";
             $("#sostable").html(sosHtml); 
             propogateOnMapSoS();
 	}
+
+    $(document).on('click', '#resolveSOS', resolveSOSRequest);
+
+   function resolveSOSRequest(){
+        $.get("http://localhost:9091/resolveSOSRequest/"+getSosId, function(data) {
+            if(data == true){
+               $("#content").html("SOS Resolved");
+              $("#alertModal").modal('show');
+                $("#resolveSOS").hide();
+            }
+           });     
+    }
 
 function propogateOnMapSoS() {
 

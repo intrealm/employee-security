@@ -1,6 +1,9 @@
 package com.sapient.tms.user.controller;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,9 +38,19 @@ public class RaiseSOSController {
 		return raiseSosImpl.getResolvedSOSRequests(false).toString();
 	}
 	
-	@RequestMapping(value="/resolveSOSRequest", method = RequestMethod.GET)
-	public List<SOSEntity> resolveSOSRequest() {
-		return sosEntityRepo.findByResolved(false);
+	@RequestMapping(value="/resolveSOSRequest/{sosId}", method = RequestMethod.GET)
+	public boolean resolveSOSRequest(@PathVariable(value = "sosId") int sosId) {
+		Optional<SOSEntity> sosRequest= sosEntityRepo.findById(sosId);
+		if(null != sosRequest.get())
+		{
+			SOSEntity sos=sosRequest.get();
+			sos.setResolved(true);
+			sos.setResolvedAt(new Time(System.currentTimeMillis()));
+			sos.setResolvedOn(new Date(System.currentTimeMillis()));
+			sosEntityRepo.save(sos);
+			return true;
+		}
+		return false;
 	}
 	
 	@RequestMapping(value="/sosdetails/{sosid}",method=RequestMethod.GET,produces="application/JSON")
