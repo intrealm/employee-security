@@ -28,7 +28,7 @@ $( document ).ready(function() {
 	}
 	
     function createSos(){ 
-    $.get("http://localhost:9091/raiseSOS/prerana/"+getRoutedata[0].routeId, function(data) {
+    $.get("http://localhost:9091/raiseSOS/"+getRoutedata[0].userName+"/"+getRoutedata[0].routeId+"/28.6314512/77.21666720000007", function(data) {
            console.log(data)
      });
     }

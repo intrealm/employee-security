@@ -23,7 +23,7 @@ insert into escalation_entity (user_name,phone_number,escalation_phone_numbers) 
 insert into escalation_entity (user_name,phone_number,escalation_phone_numbers) values ('shamirza','9891660262','9891660262');
 
 
-insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10001','New Delhi','Tilak Nagar', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Simon SIngh',8860095906, 'user','ssingh','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
+insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10001','New Delhi','Tilak Nagar', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Simon SIngh',8585912788, 'user','ssingh','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
 insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10002','Noida Sector 119','Noida Sector 119', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Ravish Kumar',7210806318, 'user','ravkumar','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
 insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10003','Noida Sector 100','Noida Sector 100', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Reema Jain',8585912788, 'user','reejain','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
 insert into user_entity (id,address,drop_location,encrypted_password,name,phone_number,role_id,user_name,salt) values('10004','Gurugram','Sector 15', 'tznXFAzqcyoLj0RMh3v3JXEsA3Z1ZEJJQVA5E6ZOma0=', 'Rachit Arora',9953237590, 'user','racarora','roHPsNHVXGtiOrId2EVEtCeTwEVj2r');
