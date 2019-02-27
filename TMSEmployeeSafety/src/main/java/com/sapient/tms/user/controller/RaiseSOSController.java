@@ -2,6 +2,7 @@ package com.sapient.tms.user.controller;
 
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,5 +39,14 @@ public class RaiseSOSController {
 	{
 		return sosEntityRepo.findByResolved(false);
 	}
+	
+	
+	@RequestMapping(value="/sosdetails/{sosid}",method=RequestMethod.GET,produces="application/JSON")
+	public String fetchsosdetails(final @PathVariable("sosid") String sosid)
+	{
+		return raiseSosImpl.fetchSosData(sosid).toString();
+	}
+	
+	
   
 }
